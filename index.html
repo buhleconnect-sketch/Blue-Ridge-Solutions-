@@ -575,18 +575,33 @@
   </div>
 </div>
 
-<div class="panel-overlay" id="contactOverlay" onclick="handlePanelClick(event,'contactOverlay')">
+<div class="panel-overlay" id="contactOverlay">
   <div class="panel-card">
-    <button class="panel-close" onclick="closePanel('contactOverlay')">×</button>
+    <button class="panel-close" onclick="closeContact()">×</button>
     <span class="panel-tag">Contact</span>
     <h2 class="panel-title">Get in Touch</h2>
     <p class="panel-body">We'd love to hear from you. Drop us a message and we'll get back to you shortly.</p>
-    <div class="panel-field"><label>Your Name</label><input type="text" placeholder="John Smith"></div>
-    <div class="panel-field"><label>Email Address</label><input type="email" placeholder="john@company.co.za"></div>
-    <div class="panel-field"><label>How Can We Help?</label><textarea placeholder="Tell us about your business and what you're looking to automate or improve..."></textarea></div>
-    <button class="panel-submit">Send Message</button>
-    <p style="margin-top:1rem; font-size:12px; color:var(--gray); text-align:center;">Or email us directly at <strong style="color:var(--navy)">hello@blueridgesolutions.co.za</strong></p>
+    
+    <form id="contactForm">
+      <div class="panel-field">
+        <label for="senderName">Your Name</label>
+        <input type="text" id="senderName" placeholder="John Smith" required>
+      </div>
+      <div class="panel-field">
+        <label for="senderEmail">Email Address</label>
+        <input type="email" id="senderEmail" placeholder="john@company.co.za" required>
+      </div>
+      <div class="panel-field">
+        <label for="senderMessage">How Can We Help?</label>
+        <textarea id="senderMessage" placeholder="Tell us about your business..." required></textarea>
+      </div>
+      <button type="submit" class="panel-submit">Send Message</button>
+    </form>
+
+    <p style="margin-top:1rem; font-size:12px;">Or email us directly at hello@blueridgesolutions.co.za</p>
   </div>
+</div>
+
 </div>
 
 <footer>
@@ -681,5 +696,54 @@
   // ── Dynamic copyright year ──
   document.getElementById('copy-year').textContent = new Date().getFullYear();
 </script>
+ <script>
+document.getElementById('contactForm').addEventListener('submit', async function(event) {
+  // 1. Stop the page from refreshing automatically
+  event.preventDefault(); 
+
+  // 2. Disable the button and show a loading state
+  const submitButton = this.querySelector('.panel-submit');
+  const originalButtonText = submitButton.innerText;
+  submitButton.innerText = 'Sending...';
+  submitButton.disabled = true;
+
+  // 3. Collect the user's input data
+  const formData = {
+    name: document.getElementById('senderName').value,
+    email: document.getElementById('senderEmail').value,
+    message: document.getElementById('senderMessage').value
+  };
+
+  try {
+    // 4. Send the data payload to your Make Webhook
+    const response = await fetch(https://hook.eu1.make.com/kexa1q5ptkid3bezjj9bkeesa7bfxzhh, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(formData)
+    });
+
+    // 5. Success handling
+    if (response.ok) {
+      alert('Thank you! Your message has been sent successfully.');
+      document.getElementById('contactForm').reset(); // Clear the form
+      if (typeof closeContact === 'function') { 
+        closeContact(); // Automatically close the popup if the function exists
+      }
+    } else {
+      alert('Oops! Something went wrong on our end. Please try again.');
+    }
+  } catch (error) {
+    console.error('Network Error:', error);
+    alert('Could not connect to the server. Please check your network connection.');
+  } finally {
+    // 6. Restore the button back to normal
+    submitButton.innerText = originalButtonText;
+    submitButton.disabled = false;
+  }
+});
+</script>
+
 </body>
 </html>
