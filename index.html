@@ -1053,7 +1053,15 @@
     document.getElementById('cd-hrs').textContent  = String(h).padStart(2,'0');
     document.getElementById('cd-min').textContent  = String(m).padStart(2,'0');
     document.getElementById('cd-sec').textContent  = String(s).padStart(2,'0');
+  } 
+ 
+ // Infinite logo loop marquee
+  const track = document.getElementById("logoTrack");
+  if (track) {
+    const clone = track.innerHTML;
+    track.innerHTML = track.innerHTML + clone;
   }
+
   tick();
   setInterval(tick, 1000);
 </script>
