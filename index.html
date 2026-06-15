@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -27,7 +28,71 @@
     overflow-x: hidden;
   }
 
-  /* ─── MARQUEE ─── */
+  /* ─── NEW ULTRA-SLOW TECH STACK LOOP ─── */
+  .agency-marquee-container {
+    width: 100%;
+    max-width: 900px;
+    margin: 1.5rem auto 3.5rem;
+    overflow: hidden;
+    background: transparent;
+    position: relative;
+    padding: 10px 0;
+    animation: fadeUp 0.8s 0.5s ease both;
+  }
+  
+  /* Soft edges to mask the entry/exit points smoothly */
+  .agency-marquee-container::before,
+  .agency-marquee-container::after {
+    position: absolute; top: 0; width: 120px; height: 100%; content: ""; z-index: 2; pointer-events: none;
+  }
+  .agency-marquee-container::before {
+    left: 0; background: linear-gradient(to right, var(--light), rgba(244,246,251,0));
+  }
+  .agency-marquee-container::after {
+    right: 0; background: linear-gradient(to left, var(--light), rgba(244,246,251,0));
+  }
+
+  .agency-marquee-track {
+    display: flex;
+    width: max-content;
+    align-items: center;
+    gap: 60px;
+    animation: slowMarqueeLoop 140s linear infinite; /* Paced ultra slow for readability */
+  }
+
+  .agency-marquee-container:hover .agency-marquee-track {
+    animation-play-state: paused;
+  }
+
+  .agency-marquee-item {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    color: var(--gray); /* Matching uniform muted gray styling */
+    font-weight: 500;
+    font-size: 15px;
+    letter-spacing: 0.03em;
+    cursor: default;
+    transition: color 0.3s ease;
+  }
+
+  .agency-marquee-item:hover {
+    color: var(--blue-accent);
+  }
+
+  .agency-marquee-item svg {
+    height: 20px;
+    width: auto;
+    fill: currentColor;
+    flex-shrink: 0;
+  }
+
+  @keyframes slowMarqueeLoop {
+    0% { transform: translateX(0); }
+    100% { transform: translateX(-50%); }
+  }
+
+  /* ─── EXISTING MARQUEE ─── */
   .logo-marquee {
     overflow: hidden;
     padding: 20px 0;
@@ -399,4 +464,170 @@
 
   /* ─── TABLET / MOBILE ─── */
   @media (max-width: 768px) {
-    nav { padding: 0
+    nav { padding: 0 1.5rem; }
+    .hero { padding-top: 7rem; }
+    .countdown { gap: 1rem; }
+    .count-num { font-size: 1.75rem; min-width: 40px; }
+    .footer-top { grid-template-columns: 1fr; gap: 2rem; }
+    .agency-marquee-track { gap: 40px; }
+  }
+</style>
+</head>
+<body>
+
+  <nav>
+    <div class="nav-left">
+      <div class="hamburger" id="hamburgerBtn">
+        <span></span>
+        <span></span>
+        <span></span>
+      </div>
+      <a href="#" class="nav-logo">Blue Ridge Solutions</a>
+    </div>
+    <div class="nav-right">
+      <button class="nav-btn" id="openServices">Services</button>
+      <button class="nav-btn primary" id="openContact">Contact</button>
+    </div>
+  </nav>
+
+  <div class="overlay" id="menuOverlay"></div>
+  <div class="side-menu" id="sideMenu">
+    <div class="side-menu-label">Navigation</div>
+    <div class="side-menu-item" id="sideNavServices">Our Services</div>
+    <div class="side-menu-item" id="sideNavContact">Get In Touch</div>
+    <div class="side-menu-divider"></div>
+    <div class="side-menu-label">Insights</div>
+    <div class="side-menu-item" id="sideNavBlog">Agency Blog</div>
+  </div>
+
+  <main class="hero">
+    <div class="hero-bg"></div>
+    <div class="grid-lines"></div>
+
+    <div class="coming-soon-word">
+      <h1>LAUNCHING</h1>
+    </div>
+
+    <h2 class="hero-tagline">Next-Generation AI Automation Solutions</h2>
+    <p class="hero-sub">Empowering Small &amp; Medium Enterprises to scale through automated intelligence.</p>
+
+    <div class="hero-services">
+      <div class="service-pill">Workflow Automation</div>
+      <div class="service-pill">CRM Integrations</div>
+      <div class="service-pill">AI Lead Nurturing</div>
+      <div class="service-pill">Custom Databases</div>
+    </div>
+
+    <div class="agency-marquee-container">
+      <div class="agency-marquee-track">
+        <div class="agency-marquee-item"><svg viewBox="0 0 24 24"><path d="M12.24 10.285V13.4h6.86c-.277 1.56-1.602 4.585-6.86 4.585-4.54 0-8.24-3.765-8.24-8.4s3.7-8.4 8.24-8.4c2.58 0 4.307 1.095 5.298 2.045l2.465-2.37C18.285 1.05 15.545 0 12.24 0 5.58 0 0 5.37 0 12s5.58 12 12.24 12c6.96 0 11.57-4.89 11.57-11.79 0-.795-.085-1.4-.195-1.925H12.24z"/></svg>Google Workspace</div>
+        <div class="agency-marquee-item"><svg viewBox="0 0 24 24"><path d="M21.365 10.518a2.628 2.628 0 0 0-1.854-.77h-.01c-.13 0-.26.01-.39.03a4.088 4.088 0 0 0-3.342-2.589A3.332 3.332 0 0 0 12.42 4.67a3.34 3.34 0 0 0-4.63-1.464 3.343 3.343 0 0 0-1.464 4.63 3.315 3.315 0 0 0-.693 1.954c0 1.25.69 2.33 1.71 2.9a4.093 4.093 0 0 0 3.376 2.593c.18 1.48 1.34 2.63 2.822 2.793a2.64 2.64 0 1 0 5.105-.72l.02-.01a2.63 2.63 0 0 0 2.7-2.228 2.623 2.623 0 0 0-.001-4.604zM10.12 6.84a1.328 1.328 0 1 1 2.22-1.464 1.328 1.328 0 0 1-2.22 1.464zm4.846 9.531a1.644 1.644 0 1 1 .002-3.287 1.644 1.644 0 0 1-.002 3.287zm3.178-3.327a1.087 1.087 0 1 1 .002-2.174 1.087 1.087 0 0 1-.002 2.174z"/></svg>HubSpot</div>
+        <div class="agency-marquee-item"><svg viewBox="0 0 24 24"><path d="M12 0A12 12 0 0 0 0 12a12 12 0 0 0 12 12 12 12 0 0 0 12-12A12 12 0 0 0 12 0zm5.13 15.66h-2.14v-4.52l-2.04 3.51h-1.9l-2.04-3.51v4.52H6.87V8.34h2.14l2.99 5.11 2.99-5.11h2.14v7.32z"/></svg>Make.com</div>
+        <div class="agency-marquee-item"><svg viewBox="0 0 24 24"><path d="M24 4.5v15c0 .85-.65 1.5-1.5 1.5H21V7.5L12 14 3 7.5V21H1.5C.65 21 0 20.35 0 19.5v-15c0-.85.65-1.5 1.5-1.5H3l9 6.5 9-6.5h1.5c.85 0 1.5.65 1.5 1.5z"/></svg>Gmail</div>
+        <div class="agency-marquee-item"><svg viewBox="0 0 24 24"><path d="M12 0C5.376 0 0 5.376 0 12s5.376 12 12 12 12-5.376 12-12S18.624 0 12 0zm4.992 16.884c-.636.312-1.284.468-1.944.468-.9 0-1.848-.3-2.844-.888a15.706 15.706 0 0 1-2.904-2.316 15.82 15.82 0 0 1-2.316-2.904c-.588-.996-.888-1.944-.888-2.844 0-.66.156-1.308.468-1.944.336-.66.828-1.104 1.488-1.332l.708-.24c.432-.144.876.072 1.08.492l1.236 2.508c.192.396.06.876-.288 1.128l-.516.372c.3.624.708 1.224 1.224 1.8 1.8 1.8 1.2 1.2 1.8 1.224l.372-.516c.252-.348.732-.48 1.128-.288l2.508 1.236c.42.204.636.648.492 1.08l-.24.708c-.228.66-.672 1.152-1.332 1.488z"/></svg>Twilio</div>
+        <div class="agency-marquee-item"><svg viewBox="0 0 24 24"><path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946C.06 5.348 5.397.01 12.008.01c3.202.001 6.212 1.246 8.477 3.513 2.266 2.268 3.507 5.28 3.505 8.484-.004 6.657-5.34 11.997-11.953 11.997-2.005-.001-3.973-.503-5.729-1.457L0 24zm6.59-4.846c1.6.95 3.188 1.449 4.825 1.451 5.436 0 9.86-4.413 9.863-9.847.002-2.634-1.023-5.11-2.887-6.974-1.864-1.865-4.343-2.891-6.983-2.893-5.44 0-9.865 4.415-9.868 9.849-.001 1.702.463 3.364 1.34 4.825l-.995 3.637 3.705-.971zm10.435-5.744c-.29-.145-1.713-.846-1.977-.942-.263-.096-.456-.145-.646.145-.19.29-.737.942-.904 1.134-.167.19-.335.212-.625.067-.29-.145-1.224-.451-2.332-1.44-1.864-1.663-1.44-1.129-2.225-2.493-.073-.125-.008-.192.055-.255.056-.056.126-.145.19-.217.063-.072.084-.121.126-.203.042-.082.021-.154-.01-.227-.032-.072-.646-1.557-.886-2.137-.233-.562-.47-.485-.646-.494-.166-.008-.358-.01-.55-.01s-.504.072-.768.362c-.263.29-1.006.983-1.006 2.398s1.033 2.782 1.177 2.975c.145.194 2.034 3.105 4.927 4.354.688.297 1.225.474 1.643.607.69.219 1.319.188 1.815.114.553-.083 1.713-.7 1.957-1.376.244-.676.244-1.256.172-1.376-.073-.122-.264-.194-.554-.339z"/></svg>WhatsApp</div>
+        <div class="agency-marquee-item"><svg viewBox="0 0 24 24"><path d="M12 0C5.373 0 0 5.373 0 12s5.373 12 12 12 12-5.373 12-12S18.627 0 12 0zm5.83 14.15c-.48 2.08-2.37 3.44-4.59 3.19-2.13-.24-3.56-1.95-3.53-4.11.02-1.35.68-2.45 1.75-3.15.26-.17.39-.12.44.17.08.47.19.93.31 1.39.04.16 0 .28-.13.38-.5.38-.72.91-.65 1.54.09.83.69 1.43 1.52 1.48.91.05 1.69-.53 1.86-1.42.16-.86-.25-1.68-1.02-1.99-.21-.08-.3-.19-.24-.42.11-.42.21-.84.34-1.26.05-.16.14-.2.29-.12 1.35.71 2.08 1.85 2.1 3.39.02.31-.05.62-.13.93.16-.06.27-.12.38-.21.57-.46.88-1.05.95-1.78.07-.74-.11-1.43-.53-2.04-.15-.22-.11-.33.1-.46.22-.14.45-.26.69-.36.19-.08.29-.01.37.18.68 1.54.67 3.1-.21 4.58z"/></svg>GoDaddy</div>
+        <div class="agency-marquee-item"><svg viewBox="0 0 24 24"><path d="M0 10.5h15.25L9.9 5.15l2.45-2.45L24 14.35 12.35 26l-2.45-2.45 5.35-5.35H0v-7.7z"/></svg>Zapier</div>
+        <div class="agency-marquee-item"><svg viewBox="0 0 24 24"><path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zM10 17H7v-2h3v2zm0-4H7v-2h3v2zm0-4H7V7h3v2zm7 8h-5v-2h5v2zm0-4h-5v-2h5v2zm0-4h-5V7h5v2z"/></svg>Google Sheets</div>
+        <div class="agency-marquee-item"><svg viewBox="0 0 24 24"><path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-2 10H7v-2h10v2zm0-4H7V7h10v2zm0 8H7v-2h10v2z"/></svg>Forms</div>
+
+        <div class="agency-marquee-item"><svg viewBox="0 0 24 24"><path d="M12.24 10.285V13.4h6.86c-.277 1.56-1.602 4.585-6.86 4.585-4.54 0-8.24-3.765-8.24-8.4s3.7-8.4 8.24-8.4c2.58 0 4.307 1.095 5.298 2.045l2.465-2.37C18.285 1.05 15.545 0 12.24 0 5.58 0 0 5.37 0 12s5.58 12 12.24 12c6.96 0 11.57-4.89 11.57-11.79 0-.795-.085-1.4-.195-1.925H12.24z"/></svg>Google Workspace</div>
+        <div class="agency-marquee-item"><svg viewBox="0 0 24 24"><path d="M21.365 10.518a2.628 2.628 0 0 0-1.854-.77h-.01c-.13 0-.26.01-.39.03a4.088 4.088 0 0 0-3.342-2.589A3.332 3.332 0 0 0 12.42 4.67a3.34 3.34 0 0 0-4.63-1.464 3.343 3.343 0 0 0-1.464 4.63 3.315 3.315 0 0 0-.693 1.954c0 1.25.69 2.33 1.71 2.9a4.093 4.093 0 0 0 3.376 2.593c.18 1.48 1.34 2.63 2.822 2.793a2.64 2.64 0 1 0 5.105-.72l.02-.01a2.63 2.63 0 0 0 2.7-2.228 2.623 2.623 0 0 0-.001-4.604zM10.12 6.84a1.328 1.328 0 1 1 2.22-1.464 1.328 1.328 0 0 1-2.22 1.464zm4.846 9.531a1.644 1.644 0 1 1 .002-3.287 1.644 1.644 0 0 1-.002 3.287zm3.178-3.327a1.087 1.087 0 1 1 .002-2.174 1.087 1.087 0 0 1-.002 2.174z"/></svg>HubSpot</div>
+        <div class="agency-marquee-item"><svg viewBox="0 0 24 24"><path d="M12 0A12 12 0 0 0 0 12a12 12 0 0 0 12 12 12 12 0 0 0 12-12A12 12 0 0 0 12 0zm5.13 15.66h-2.14v-4.52l-2.04 3.51h-1.9l-2.04-3.51v4.52H6.87V8.34h2.14l2.99 5.11 2.99-5.11h2.14v7.32z"/></svg>Make.com</div>
+        <div class="agency-marquee-item"><svg viewBox="0 0 24 24"><path d="M24 4.5v15c0 .85-.65 1.5-1.5 1.5H21V7.5L12 14 3 7.5V21H1.5C.65 21 0 20.35 0 19.5v-15c0-.85.65-1.5 1.5-1.5H3l9 6.5 9-6.5h1.5c.85 0 1.5.65 1.5 1.5z"/></svg>Gmail</div>
+        <div class="agency-marquee-item"><svg viewBox="0 0 24 24"><path d="M12 0C5.376 0 0 5.376 0 12s5.376 12 12 12 12-5.376 12-12S18.624 0 12 0zm4.992 16.884c-.636.312-1.284.468-1.944.468-.9 0-1.848-.3-2.844-.888a15.706 15.706 0 0 1-2.904-2.316 15.82 15.82 0 0 1-2.316-2.904c-.588-.996-.888-1.944-.888-2.844 0-.66.156-1.308.468-1.944.336-.66.828-1.104 1.488-1.332l.708-.24c.432-.144.876.072 1.08.492l1.236 2.508c.192.396.06.876-.288 1.128l-.516.372c.3.624.708 1.224 1.224 1.8 1.8 1.8 1.2 1.2 1.8 1.224l.372-.516c.252-.348.732-.48 1.128-.288l2.508 1.236c.42.204.636.648.492 1.08l-.24.708c-.228.66-.672 1.152-1.332 1.488z"/></svg>Twilio</div>
+        <div class="agency-marquee-item"><svg viewBox="0 0 24 24"><path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946C.06 5.348 5.397.01 12.008.01c3.202.001 6.212 1.246 8.477 3.513 2.266 2.268 3.507 5.28 3.505 8.484-.004 6.657-5.34 11.997-11.953 11.997-2.005-.001-3.973-.503-5.729-1.457L0 24zm6.59-4.846c1.6.95 3.188 1.449 4.825 1.451 5.436 0 9.86-4.413 9.863-9.847.002-2.634-1.023-5.11-2.887-6.974-1.864-1.865-4.343-2.891-6.983-2.893-5.44 0-9.865 4.415-9.868 9.849-.001 1.702.463 3.364 1.34 4.825l-.995 3.637 3.705-.971zm10.435-5.744c-.29-.145-1.713-.846-1.977-.942-.263-.096-.456-.145-.646.145-.19.29-.737.942-.904 1.134-.167.19-.335.212-.625.067-.29-.145-1.224-.451-2.332-1.44-1.864-1.663-1.44-1.129-2.225-2.493-.073-.125-.008-.192.055-.255.056-.056.126-.145.19-.217.063-.072.084-.121.126-.203.042-.082.021-.154-.01-.227-.032-.072-.646-1.557-.886-2.137-.233-.562-.47-.485-.646-.494-.166-.008-.358-.01-.55-.01s-.504.072-.768.362c-.263.29-1.006.983-1.006 2.398s1.033 2.782 1.177 2.975c.145.194 2.034 3.105 4.927 4.354.688.297 1.225.474 1.643.607.69.219 1.319.188 1.815.114.553-.083 1.713-.7 1.957-1.376.244-.676.244-1.256.172-1.376-.073-.122-.264-.194-.554-.339z"/></svg>WhatsApp</div>
+        <div class="agency-marquee-item"><svg viewBox="0 0 24 24"><path d="M12 0C5.373 0 0 5.373 0 12s5.373 12 12 12 12-5.373 12-12S18.627 0 12 0zm5.83 14.15c-.48 2.08-2.37 3.44-4.59 3.19-2.13-.24-3.56-1.95-3.53-4.11.02-1.35.68-2.45 1.75-3.15.26-.17.39-.12.44.17.08.47.19.93.31 1.39.04.16 0 .28-.13.38-.5.38-.72.91-.65 1.54.09.83.69 1.43 1.52 1.48.91.05 1.69-.53 1.86-1.42.16-.86-.25-1.68-1.02-1.99-.21-.08-.3-.19-.24-.42.11-.42.21-.84.34-1.26.05-.16.14-.2.29-.12 1.35.71 2.08 1.85 2.1 3.39.02.31-.05.62-.13.93.16-.06.27-.12.38-.21.57-.46.88-1.05.95-1.78.07-.74-.11-1.43-.53-2.04-.15-.22-.11-.33.1-.46.22-.14.45-.26.69-.36.19-.08.29-.01.37.18.68 1.54.67 3.1-.21 4.58z"/></svg>GoDaddy</div>
+        <div class="agency-marquee-item"><svg viewBox="0 0 24 24"><path d="M0 10.5h15.25L9.9 5.15l2.45-2.45L24 14.35 12.35 26l-2.45-2.45 5.35-5.35H0v-7.7z"/></svg>Zapier</div>
+        <div class="agency-marquee-item"><svg viewBox="0 0 24 24"><path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zM10 17H7v-2h3v2zm0-4H7v-2h3v2zm0-4H7V7h3v2zm7 8h-5v-2h5v2zm0-4h-5v-2h5v2zm0-4h-5V7h5v2z"/></svg>Google Sheets</div>
+        <div class="agency-marquee-item"><svg viewBox="0 0 24 24"><path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-2 10H7v-2h10v2zm0-4H7V7h10v2zm0 8H7v-2h10v2z"/></svg>Forms</div>
+      </div>
+    </div>
+
+    <div class="countdown">
+      <div class="count-block">
+        <div class="count-num" id="days">00</div>
+        <div class="count-label">Days</div>
+      </div>
+      <div class="count-sep">:</div>
+      <div class="count-block">
+        <div class="count-num" id="hours">00</div>
+        <div class="count-label">Hours</div>
+      </div>
+      <div class="count-sep">:</div>
+      <div class="count-block">
+        <div class="count-num" id="minutes">00</div>
+        <div class="count-label">Minutes</div>
+      </div>
+      <div class="count-sep">:</div>
+      <div class="count-block">
+        <div class="count-num" id="seconds">00</div>
+        <div class="count-label">Seconds</div>
+      </div>
+    </div>
+
+    <div class="notify-bar">
+      <input type="email" placeholder="Enter your email address">
+      <button>Notify Me</button>
+    </div>
+    <div class="notify-note">Be the first to know when our services open. Zero spam.</div>
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+      <div class="footer-top">
+        <div class="footer-brand">
+          <h3>Blue Ridge Solutions</h3>
+          <p>Designing custom system architectures and automated ecosystems for competitive businesses.</p>
+        </div>
+        <div class="footer-col">
+          <h4>Agency</h4>
+          <ul>
+            <li>Our Strategy</li>
+            <li>Case Studies</li>
+            <li>Workflows</li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>Connect</h4>
+          <div class="footer-contact-item">info@blueridgesolutions.co.za</div>
+        </div>
+      </div>
+      <div class="footer-middle">
+        <div class="footer-social-label">Follow our updates</div>
+        <div class="social-links">
+          <div class="social-btn">LN</div>
+          <div class="social-btn">TW</div>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>&copy; 2026 Blue Ridge Solutions. All rights reserved.</p>
+        <div class="footer-bottom-links">
+          <span>Privacy Policy</span>
+          <span>Terms of Service</span>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    // Interface Navigation Triggers
+    const menuBtn = document.getElementById('hamburgerBtn');
+    const sideMenu = document.getElementById('sideMenu');
+    const overlay = document.getElementById('menuOverlay');
+
+    function toggleMenu() {
+      menuBtn.classList.toggle('open');
+      sideMenu.classList.toggle('open');
+      overlay.classList.toggle('show');
+    }
+
+    menuBtn.addEventListener('click', toggleMenu);
+    overlay.addEventListener('click', toggleMenu);
+
+    // Placeholder actions for dialog interfaces
+    document.getElementById('openServices').addEventListener('click', () => alert('Services overview module under development.'));
+    document.getElementById('openContact').addEventListener('click', () => alert('Contact gateway under development.'));
+  </script>
+</body>
+</html>
