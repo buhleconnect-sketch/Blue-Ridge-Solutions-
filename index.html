@@ -27,7 +27,7 @@
     overflow-x: hidden;
   }
 
-  /* ─── MARQUEE (STYLED TO MATCH REFERENCE IMAGE) ─── */
+  /* ─── MARQUEE ─── */
   .logo-marquee {
     overflow: hidden;
     padding: 20px 0;
@@ -79,6 +79,7 @@
     color: var(--blue-accent);
   }
   .logo-badge svg { width: 18px; height: 18px; flex-shrink: 0; }
+  
   @keyframes scrollMarquee {
     0%   { transform: translateX(0); }
     100% { transform: translateX(-50%); }
@@ -114,8 +115,7 @@
   .hamburger.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
   .hamburger.open span:nth-child(2) { opacity: 0; }
   .hamburger.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
-  .nav-logo { display: flex; align-items: center; gap: 10px; text-decoration: none; }
-  .nav-logo img { height: 36px; }
+  .nav-logo { display: flex; align-items: center; gap: 10px; text-decoration: none; font-weight: 700; color: var(--navy); }
   .nav-right { display: flex; align-items: center; gap: 0.5rem; }
   .nav-btn {
     display: flex; align-items: center; gap: 6px;
@@ -188,11 +188,6 @@
       linear-gradient(rgba(26,44,91,0.04) 1px, transparent 1px),
       linear-gradient(90deg, rgba(26,44,91,0.04) 1px, transparent 1px);
     background-size: 60px 60px; pointer-events: none;
-  }
-  .hero-logo {
-    width: 260px; margin-bottom: 3rem;
-    position: relative; z-index: 2;
-    animation: fadeUp 0.8s ease both;
   }
   .coming-soon-word {
     position: relative; z-index: 2;
@@ -341,6 +336,7 @@
     text-transform: uppercase; cursor: pointer; transition: background 0.2s;
   }
   .panel-submit:hover { background: var(--navy-mid); }
+  
   .blog-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin-bottom: 1.5rem; }
   .blog-card-item {
     border: 1px solid var(--border); border-radius: 8px;
@@ -358,7 +354,7 @@
     display: grid; grid-template-columns: 1.5fr 1fr 1fr; gap: 3rem;
     padding-bottom: 3rem; border-bottom: 1px solid rgba(255,255,255,0.08);
   }
-  .footer-brand img { height: 44px; margin-bottom: 1.25rem; filter: brightness(0) invert(1) opacity(0.9); }
+  .footer-brand h3 { font-family: 'Barlow Condensed', sans-serif; font-size: 24px; font-weight: 700; color: white; margin-bottom: 1rem; }
   .footer-brand p { font-size: 13px; line-height: 1.7; color: rgba(255,255,255,0.55); max-width: 280px; }
   .footer-col h4 {
     font-family: 'Barlow Condensed', sans-serif; font-size: 11px; font-weight: 600;
@@ -401,20 +397,6 @@
     to   { opacity: 1; transform: scale(1) translateY(0); }
   }
 
-  /* ─── TABLET ─── */
+  /* ─── TABLET / MOBILE ─── */
   @media (max-width: 768px) {
-    nav { padding: 0 1.25rem; height: 62px; }
-    .side-menu { top: 62px; height: calc(100vh - 62px); width: 260px; }
-    .hero { padding: 6rem 1.5rem 3rem; }
-    .hero-logo { width: 200px; margin-bottom: 2rem; }
-    .logo-marquee { margin-bottom: 2.5rem; }
-    .countdown { gap: 1.25rem; }
-    .count-num { font-size: 2rem; min-width: 48px; }
-    .notify-bar { flex-direction: column; border-radius: 8px; }
-    .notify-bar input { width: 100%; border-bottom: 1px solid var(--border); }
-    .notify-bar button { width: 100%; border-radius: 0 0 7px 7px; }
-    .panel-card { padding: 1.75rem 1.5rem; }
-    .blog-grid { grid-template-columns: 1fr; }
-    .footer-top { grid-template-columns: 1fr; gap: 2rem; }
-    .footer-inner { padding: 0 1.5rem; }
-    .footer-bottom { flex-direction: column; align-items: center; text-align: center; }
+    nav { padding: 0
