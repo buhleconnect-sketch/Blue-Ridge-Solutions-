@@ -736,40 +736,6 @@ document.getElementById('contactForm').addEventListener('submit', async function
     submitButton.innerText = originalButtonText;
     submitButton.disabled = false;
   } 
-  // --- Early Access Waitlist Form ---
-  document.getElementById('earlyAccessForm').addEventListener('submit', async function(event) {
-    event.preventDefault();
-
-    const submitButton = document.getElementById('earlySubmitBtn');
-    const originalButtonText = submitButton.innerText;
-    submitButton.innerText = 'Sending...';
-    submitButton.disabled = true;
-
-    const searchParams = new URLSearchParams();
-    searchParams.append('email', document.getElementById('earlyEmail').value);
-    searchParams.append('source', 'Early Access Waitlist');
-
-    try {
-      await fetch('https://hook.eu1.make.com/kexa1q5ptkid3bezjj9bkeesa7bfxzhh', {
-        method: 'POST',
-        mode: 'no-cors',
-        headers: {
-          'Content-Type': 'application/x-www-form-urlencoded'
-        },
-        body: searchParams
-      });
-
-      alert('Awesome! You have been added to our early access list.');
-      document.getElementById('earlyAccessForm').reset();
-
-    } catch (error) {
-      console.error('Network Error:', error);
-      alert('Could not connect to the server. Please check your connection.');
-    } finally {
-      submitButton.innerText = originalButtonText;
-      submitButton.disabled = false;
-    }
-  });
  
 </script>
 
