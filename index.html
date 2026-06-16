@@ -716,7 +716,7 @@ document.getElementById('contactForm').addEventListener('submit', async function
         'Content-Type': 'application/x-www-form-urlencoded'
       },
       body: searchParams
-    });
+    }
 
     alert('Thank you! Your message has been sent successfully.');
     document.getElementById('contactForm').reset(); 
@@ -731,7 +731,7 @@ document.getElementById('contactForm').addEventListener('submit', async function
     submitButton.innerText = originalButtonText;
     submitButton.disabled = false;
   } 
- 
+});
 </script>
 
 
