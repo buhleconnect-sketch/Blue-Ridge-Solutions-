@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Blue Ridge Solutions — Digital Growth Systems</title>
-<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Cormorant+Garamond:wght@300;400;600&family=Barlow:wght@300;400;500;600&family=Barlow+Condensed:wght@400;600;700&family=Montserrat:wght@700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Cormorant+Garamond:wght@300;400;600&family=Barlow:wght@300;400;500;600&family=Barlow+Condensed:wght@400;600;700&display=swap" rel="stylesheet">
 <style>
   *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
@@ -17,69 +17,22 @@
     --white: #ffffff;
     --gray: #8899bb;
     --border: rgba(26,44,91,0.12);
+
+    /* Brand name colours — matches CTA button navy */
+    --brand-main: #0A0A0A;
+    --brand-accent: var(--navy);
   }
 
   html {
     scroll-behavior: smooth;
     scroll-padding-top: 82px;
   }
-
   html, body {
     min-height: 100vh;
     font-family: 'Barlow', sans-serif;
     background: var(--light);
     color: var(--navy);
     overflow-x: hidden;
-  }
-
-  /* ─── MARQUEE ─── */
-  .logo-marquee {
-    overflow: hidden;
-    padding: 18px 0;
-    background: transparent;
-    white-space: nowrap;
-    position: relative;
-    width: 100%;
-    max-width: 820px;
-    margin: 0 auto;
-    animation: fadeUp 0.8s 0.55s ease both;
-  }
-  .logo-marquee::before,
-  .logo-marquee::after {
-    position: absolute; top: 0;
-    width: 100px; height: 100%;
-    content: ""; z-index: 2;
-    pointer-events: none;
-  }
-  .logo-marquee::before {
-    left: 0;
-    background: linear-gradient(to right, var(--light), rgba(244,246,251,0));
-  }
-  .logo-marquee::after {
-    right: 0;
-    background: linear-gradient(to left, var(--light), rgba(244,246,251,0));
-  }
-  .logo-track {
-    display: inline-flex;
-    align-items: center;
-    animation: scrollMarquee 35s linear infinite;
-  }
-  .logo-marquee:hover .logo-track { animation-play-state: paused; }
-  .logo-item {
-    padding: 0 26px;
-    display: flex; align-items: center; justify-content: center;
-  }
-  .logo-badge {
-    display: flex; align-items: center; gap: 8px;
-    font-size: 13px; font-weight: 500; letter-spacing: 0.02em;
-    color: var(--navy-mid); opacity: 0.6; white-space: nowrap;
-    transition: opacity 0.3s, color 0.3s; cursor: default;
-  }
-  .logo-badge:hover { opacity: 1; color: var(--blue-accent); }
-  .logo-badge svg { width: 16px; height: 16px; flex-shrink: 0; }
-  @keyframes scrollMarquee {
-    0%   { transform: translateX(0); }
-    100% { transform: translateX(-50%); }
   }
 
   /* ─── NAV ─── */
@@ -91,7 +44,6 @@
     backdrop-filter: blur(12px);
     border-bottom: 1px solid var(--border);
   }
-  .nav-left { display: flex; align-items: center; gap: 1rem; }
   .hamburger {
     cursor: pointer; display: flex; flex-direction: column; gap: 5px;
     padding: 8px; border-radius: 6px; transition: background 0.2s;
@@ -105,40 +57,16 @@
   .hamburger.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
   .hamburger.open span:nth-child(2) { opacity: 0; }
   .hamburger.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
-
-  .nav-logo { display: flex; align-items: center; gap: 10px; text-decoration: none; }
-  .nav-logo img { height: 36px; }
-  .nav-logo-text {
-    display: none;
-    align-items: center;
-    font-family: 'Bebas Neue', sans-serif;
-    font-size: 1.2rem; letter-spacing: 0.02em; color: var(--navy);
-  }
-  .nav-logo-text span { color: var(--blue-accent); }
-
-  .nav-center {
-    display: flex; align-items: center; gap: 0.25rem;
-    position: absolute; left: 50%; transform: translateX(-50%);
-  }
-  .nav-link {
-    padding: 8px 16px; font-size: 12px; font-weight: 500;
-    letter-spacing: 0.06em; text-transform: uppercase; text-decoration: none;
-    color: var(--navy); border-radius: 4px;
-    transition: background 0.2s, color 0.2s;
-  }
-  .nav-link:hover { background: var(--light); color: var(--blue-accent); }
-
-  .nav-right { display: flex; align-items: center; }
   .nav-btn {
     display: flex; align-items: center; gap: 6px;
     padding: 9px 20px; font-family: 'Barlow', sans-serif;
     font-size: 12px; font-weight: 600; letter-spacing: 0.06em;
     text-transform: uppercase; cursor: pointer; border: none; border-radius: 4px;
-    transition: background 0.2s, color 0.2s;
+    transition: background 0.2s;
   }
   .nav-btn.primary { background: var(--navy); color: white; }
   .nav-btn.primary:hover { background: var(--navy-mid); }
-  .nav-btn svg { width: 14px; height: 14px; flex-shrink: 0; }
+  .nav-btn svg { width: 14px; height: 14px; }
 
   /* ─── SIDE MENU ─── */
   .side-menu {
@@ -162,18 +90,47 @@
   .side-menu-item svg { width: 17px; height: 17px; opacity: 0.65; flex-shrink: 0; }
   .side-menu-divider { height: 1px; background: var(--border); margin: 0.75rem 2rem; }
   .side-menu-label { padding: 0.75rem 2rem 0.25rem; font-size: 10px; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase; color: var(--gray); }
-
   .overlay { position: fixed; inset: 0; background: rgba(15,28,61,0.22); opacity: 0; pointer-events: none; transition: opacity 0.3s; z-index: 98; }
   .overlay.show { opacity: 1; pointer-events: all; }
+
+  /* ─── SERVICES MARQUEE ─── */
+  .svc-marquee {
+    overflow: hidden; padding: 18px 0; white-space: nowrap;
+    position: relative; width: 100%; max-width: 820px; margin: 0 auto;
+    animation: fadeUp 0.8s 0.45s ease both;
+  }
+  .svc-marquee::before, .svc-marquee::after {
+    position: absolute; top: 0; width: 80px; height: 100%;
+    content: ""; z-index: 2; pointer-events: none;
+  }
+  .svc-marquee::before { left: 0; background: linear-gradient(to right, var(--light), transparent); }
+  .svc-marquee::after  { right: 0; background: linear-gradient(to left,  var(--light), transparent); }
+  .svc-track {
+    display: inline-flex; align-items: center;
+    animation: scrollMarquee 38s linear infinite;
+  }
+  .svc-marquee:hover .svc-track { animation-play-state: paused; }
+  .svc-item { padding: 0 28px; display: flex; align-items: center; }
+  .svc-badge {
+    display: flex; align-items: center; gap: 9px;
+    font-size: 13px; font-weight: 500; letter-spacing: 0.04em;
+    color: var(--navy-mid); opacity: 0.65; white-space: nowrap;
+    transition: opacity 0.3s, color 0.3s; cursor: default;
+  }
+  .svc-badge:hover { opacity: 1; color: var(--blue-accent); }
+  .svc-badge svg { width: 16px; height: 16px; flex-shrink: 0; }
+  .svc-sep { color: var(--border); font-size: 18px; padding: 0 4px; }
+  @keyframes scrollMarquee {
+    0%   { transform: translateX(0); }
+    100% { transform: translateX(-50%); }
+  }
 
   /* ─── HERO ─── */
   .hero {
     min-height: 100vh;
     display: flex; align-items: center; justify-content: center;
     flex-direction: column; text-align: center;
-    padding: 9rem 2rem 5rem;
-    position: relative; overflow: hidden;
-    background: var(--light);
+    padding: 9rem 2rem 5rem; position: relative; overflow: hidden;
   }
   .hero-bg {
     position: absolute; inset: 0; pointer-events: none;
@@ -188,28 +145,24 @@
       linear-gradient(90deg, rgba(26,44,91,0.035) 1px, transparent 1px);
     background-size: 60px 60px;
   }
-
   .hero-logo {
     width: 200px; margin-bottom: 2.5rem;
     position: relative; z-index: 2;
     animation: fadeUp 0.8s ease both;
   }
 
-  /* ── COMPANY NAME — Bebas Neue, tight ── */
-  .hero-company-name {
-    position: relative; z-index: 2;
-    margin-bottom: 1.5rem;
+  /* ── Company name — Electric palette ── */
+  .hero-brand {
+    position: relative; z-index: 2; margin-bottom: 1.5rem;
     animation: fadeUp 0.8s 0.1s ease both;
   }
-  .hero-company-name h1 {
+  .hero-brand h1 {
     font-family: 'Bebas Neue', sans-serif;
     font-size: clamp(3.5rem, 9vw, 6.5rem);
-    font-weight: 400;
-    letter-spacing: 0.02em;   /* essentially none — Bebas is already tight */
-    line-height: 1;
-    color: var(--navy);
+    font-weight: 400; letter-spacing: 0.02em; line-height: 1;
+    color: var(--brand-main);
   }
-  .hero-company-name h1 span { color: var(--blue-accent); }
+  .hero-brand h1 span { color: var(--brand-accent); }
 
   .hero-headline {
     position: relative; z-index: 2;
@@ -228,15 +181,14 @@
   .hero-ctas {
     position: relative; z-index: 2;
     display: flex; gap: 12px; flex-wrap: wrap; justify-content: center;
-    margin-bottom: 2.5rem;
+    margin-bottom: 0;
     animation: fadeUp 0.8s 0.4s ease both;
   }
   .btn-primary {
     padding: 14px 32px; background: var(--navy); color: white;
     border: none; border-radius: 4px; font-family: 'Barlow', sans-serif;
-    font-size: 12px; font-weight: 600; letter-spacing: 0.08em;
-    text-transform: uppercase; cursor: pointer;
-    transition: background 0.2s, transform 0.15s;
+    font-size: 12px; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase;
+    cursor: pointer; transition: background 0.2s, transform 0.15s;
   }
   .btn-primary:hover { background: var(--navy-mid); transform: translateY(-1px); }
   .btn-outline {
@@ -248,24 +200,9 @@
   }
   .btn-outline:hover { border-color: var(--blue-accent); color: var(--blue-accent); transform: translateY(-1px); }
 
-  .hero-pills {
-    position: relative; z-index: 2;
-    display: flex; flex-wrap: wrap; gap: 8px; justify-content: center;
-    margin-bottom: 2rem;
-    animation: fadeUp 0.8s 0.45s ease both;
-  }
-  .pill {
-    padding: 6px 14px; border: 1px solid var(--border); border-radius: 100px;
-    font-size: 11px; font-weight: 500; letter-spacing: 0.05em;
-    color: var(--navy-mid); background: white; text-transform: uppercase;
-    transition: border-color 0.2s, color 0.2s; cursor: default;
-  }
-  .pill:hover { border-color: var(--blue-accent); color: var(--blue-accent); }
-
-  /* ─── SECTIONS (base) ─── */
+  /* ─── SECTIONS ─── */
   .section { padding: 6rem 2.5rem; }
   .section-inner { max-width: 1100px; margin: 0 auto; }
-
   .eyebrow {
     display: inline-block; font-size: 11px; font-weight: 600;
     letter-spacing: 0.14em; text-transform: uppercase; color: var(--blue-accent);
@@ -279,21 +216,32 @@
   }
   .section-lead {
     font-size: 15px; color: var(--gray); line-height: 1.75;
-    max-width: 560px; margin-bottom: 3rem;
+    max-width: 560px; margin-bottom: 2.5rem;
   }
   .bg-white { background: var(--white); }
   .bg-light { background: var(--light); }
 
-  /* ─── SERVICES / CARDS ─── */
-  .cards-grid {
-    display: grid; grid-template-columns: repeat(2, 1fr); gap: 1.5rem;
+  /* ─── SERVICES — Horizontal Scroll ─── */
+  .cards-scroll {
+    display: flex;
+    overflow-x: auto;
+    gap: 1.25rem;
+    padding-bottom: 1.25rem;
+    scroll-snap-type: x mandatory;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+    cursor: grab;
   }
-  .card {
+  .cards-scroll:active { cursor: grabbing; }
+  .cards-scroll::-webkit-scrollbar { display: none; }
+
+  .scroll-card {
+    flex: 0 0 300px;
+    scroll-snap-align: start;
     background: white; border: 1px solid var(--border); border-radius: 12px;
     padding: 2rem; transition: border-color 0.25s, box-shadow 0.25s, transform 0.25s;
   }
-  .bg-light .card { background: white; }
-  .card:hover {
+  .scroll-card:hover {
     border-color: rgba(58,111,216,0.3);
     box-shadow: 0 6px 28px rgba(58,111,216,0.09); transform: translateY(-3px);
   }
@@ -308,12 +256,23 @@
   }
   .card-desc { font-size: 14px; color: #4a5a7a; line-height: 1.75; }
 
+  /* Scroll hint dots */
+  .scroll-hint {
+    display: flex; align-items: center; gap: 6px;
+    margin-top: 1.25rem; justify-content: flex-start;
+  }
+  .scroll-dot {
+    width: 6px; height: 6px; border-radius: 50%;
+    background: var(--border); transition: background 0.2s;
+    cursor: pointer;
+  }
+  .scroll-dot.active { background: var(--blue-accent); width: 18px; border-radius: 3px; }
+
   /* ─── PROCESS ─── */
   .process-track {
     display: grid;
     grid-template-columns: 1fr auto 1fr auto 1fr;
     align-items: start;
-    gap: 0;
     margin-top: 0.5rem;
   }
   .process-step { padding: 2rem 1.5rem; text-align: center; }
@@ -336,26 +295,31 @@
   }
   .step-arrow svg { width: 28px; height: 28px; }
 
-  /* ─── BLOG ─── */
+  /* ─── BLOG — Horizontal Scroll ─── */
   .blog-section { position: relative; overflow: hidden; }
-  .float-bg {
-    position: absolute; inset: 0; pointer-events: none; overflow: hidden;
-  }
-  .float-icon {
-    position: absolute; opacity: 0.04;
-  }
+  .float-bg { position: absolute; inset: 0; pointer-events: none; overflow: hidden; }
+  .float-icon { position: absolute; opacity: 0.04; }
   .float-icon svg { stroke: var(--navy); fill: none; }
 
-  .blog-header {
-    display: flex; align-items: flex-end; justify-content: space-between;
-    margin-bottom: 2.5rem; flex-wrap: wrap; gap: 1rem;
+  .blog-scroll {
+    display: flex;
+    overflow-x: auto;
+    gap: 1.25rem;
+    padding-bottom: 1.25rem;
+    scroll-snap-type: x mandatory;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+    cursor: grab;
+    align-items: stretch;
   }
-  .blog-grid {
-    display: grid; grid-template-columns: repeat(2, 1fr); gap: 1.25rem;
-  }
+  .blog-scroll:active { cursor: grabbing; }
+  .blog-scroll::-webkit-scrollbar { display: none; }
+
   .blog-card {
+    flex: 0 0 300px;
+    scroll-snap-align: start;
     border: 1px solid var(--border); border-radius: 12px; padding: 1.5rem;
-    background: white; cursor: pointer;
+    background: white; cursor: pointer; display: flex; flex-direction: column;
     transition: border-color 0.2s, box-shadow 0.2s, transform 0.2s;
   }
   .blog-card:hover {
@@ -364,10 +328,39 @@
   }
   .bc-tag { font-size: 10px; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; color: var(--blue-accent); margin-bottom: 0.6rem; }
   .bc-title { font-size: 14px; font-weight: 600; color: var(--navy-dark); line-height: 1.5; margin-bottom: 0.5rem; }
-  .bc-desc { font-size: 12px; color: var(--gray); line-height: 1.65; }
+  .bc-desc { font-size: 12px; color: var(--gray); line-height: 1.65; flex: 1; }
   .bc-date { font-size: 11px; color: var(--gray); margin-top: 0.85rem; opacity: 0.7; }
 
-  /* ─── CONTACT ─── */
+  /* Arrow CTA card at end of blog scroll */
+  .blog-arrow-cta {
+    flex: 0 0 120px;
+    scroll-snap-align: start;
+    border: 1px solid var(--border); border-radius: 12px;
+    display: flex; flex-direction: column;
+    align-items: center; justify-content: center; gap: 12px;
+    cursor: pointer; background: white;
+    transition: border-color 0.2s, background 0.2s, transform 0.2s;
+    padding: 1.5rem 1rem; text-align: center;
+  }
+  .blog-arrow-cta:hover {
+    border-color: var(--blue-accent);
+    background: rgba(58,111,216,0.04); transform: translateY(-2px);
+  }
+  .blog-arrow-cta .arrow-circle {
+    width: 48px; height: 48px; border-radius: 50%;
+    border: 1.5px solid var(--blue-accent);
+    display: flex; align-items: center; justify-content: center;
+    color: var(--blue-accent);
+    transition: background 0.2s;
+  }
+  .blog-arrow-cta:hover .arrow-circle { background: var(--blue-accent); color: white; }
+  .blog-arrow-cta .arrow-circle svg { width: 20px; height: 20px; }
+  .blog-arrow-cta span {
+    font-size: 11px; font-weight: 600; letter-spacing: 0.06em;
+    text-transform: uppercase; color: var(--navy-mid); line-height: 1.4;
+  }
+
+  /* ─── CONTACT — form only, centred ─── */
   .contact-section {
     background: var(--navy-dark); padding: 6rem 2.5rem;
     position: relative; overflow: hidden;
@@ -379,50 +372,41 @@
       linear-gradient(90deg, rgba(255,255,255,0.018) 1px, transparent 1px);
     background-size: 60px 60px;
   }
-  .contact-inner {
-    max-width: 1100px; margin: 0 auto;
-    display: grid; grid-template-columns: 1fr 1.15fr;
-    gap: 5rem; align-items: start; position: relative; z-index: 1;
+  .contact-wrap {
+    max-width: 640px; margin: 0 auto; position: relative; z-index: 1;
+    text-align: center;
   }
   .contact-section .eyebrow { color: rgba(255,255,255,0.4); }
   .contact-section .section-title { color: white; }
-  .contact-section .section-lead { color: rgba(255,255,255,0.5); margin-bottom: 2rem; }
-
-  .contact-detail {
-    display: flex; align-items: flex-start; gap: 14px; margin-bottom: 1.5rem;
+  .contact-section .section-lead {
+    color: rgba(255,255,255,0.5); max-width: 100%; margin-bottom: 2.5rem;
   }
-  .detail-icon {
-    width: 40px; height: 40px; border: 1px solid rgba(255,255,255,0.1);
-    border-radius: 8px; display: flex; align-items: center; justify-content: center;
-    flex-shrink: 0;
-  }
-  .detail-icon svg { width: 17px; height: 17px; stroke: rgba(255,255,255,0.5); }
-  .detail-text strong { display: block; font-size: 12px; font-weight: 600; color: rgba(255,255,255,0.5); letter-spacing: 0.06em; text-transform: uppercase; margin-bottom: 3px; }
-  .detail-text span { font-size: 14px; color: rgba(255,255,255,0.75); }
-
-  .contact-form { display: flex; flex-direction: column; gap: 1rem; }
+  .contact-form { display: flex; flex-direction: column; gap: 1rem; text-align: left; }
   .cfield { display: flex; flex-direction: column; gap: 6px; }
-  .cfield label { font-size: 11px; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; color: rgba(255,255,255,0.38); }
+  .cfield label {
+    font-size: 11px; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase;
+    color: rgba(255,255,255,0.38);
+  }
   .cfield input, .cfield textarea {
-    width: 100%; padding: 12px 14px;
+    width: 100%; padding: 13px 15px;
     border: 1px solid rgba(255,255,255,0.1); border-radius: 6px;
-    background: rgba(255,255,255,0.06); color: white;
+    background: rgba(255,255,255,0.07); color: white;
     font-family: 'Barlow', sans-serif; font-size: 14px; outline: none;
     transition: border-color 0.2s, background 0.2s;
   }
   .cfield input::placeholder, .cfield textarea::placeholder { color: rgba(255,255,255,0.25); }
-  .cfield input:focus, .cfield textarea:focus { border-color: var(--blue-accent); background: rgba(255,255,255,0.09); }
-  .cfield textarea { min-height: 120px; resize: none; }
+  .cfield input:focus, .cfield textarea:focus { border-color: var(--blue-accent); background: rgba(255,255,255,0.1); }
+  .cfield textarea { min-height: 130px; resize: none; }
   .contact-submit {
-    width: 100%; padding: 14px; background: var(--blue-accent); color: white;
+    width: 100%; padding: 15px; background: var(--blue-accent); color: white;
     border: none; border-radius: 6px; font-family: 'Barlow', sans-serif;
-    font-size: 12px; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase;
+    font-size: 13px; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase;
     cursor: pointer; transition: background 0.2s, transform 0.15s; margin-top: 0.25rem;
   }
-  .contact-submit:hover { background: #2d5cbd; transform: translateY(-1px); }
+  .contact-submit:hover { background: #0047cc; transform: translateY(-1px); }
 
   /* ─── FOOTER ─── */
-  footer { background: var(--navy-dark); color: white; padding: 4rem 0 0; }
+  footer { background: var(--navy-dark); color: white; padding: 4rem 0 0; border-top: 1px solid rgba(255,255,255,0.06); }
   .footer-inner { max-width: 1100px; margin: 0 auto; padding: 0 2.5rem; }
   .footer-top {
     display: grid; grid-template-columns: 1.5fr 1fr 1fr; gap: 3rem;
@@ -432,17 +416,18 @@
   .footer-brand-text {
     display: none;
     font-family: 'Bebas Neue', sans-serif;
-    font-size: 1.4rem; letter-spacing: 0.02em; color: white;
+    font-size: 1.5rem; letter-spacing: 0.02em;
+    color: #ffffff;    /* main on dark = white */
     margin-bottom: 1.25rem;
   }
-  .footer-brand-text span { color: var(--blue-accent); }
+  .footer-brand-text span { color: var(--brand-accent); } /* accent = #005EFF */
   .footer-brand p { font-size: 13px; line-height: 1.75; color: rgba(255,255,255,0.5); max-width: 280px; }
   .footer-col h4 { font-family: 'Barlow Condensed', sans-serif; font-size: 11px; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase; color: rgba(255,255,255,0.35); margin-bottom: 1.25rem; }
   .footer-col ul { list-style: none; }
   .footer-col ul li { margin-bottom: 10px; font-size: 13px; color: rgba(255,255,255,0.55); cursor: pointer; transition: color 0.2s; }
   .footer-col ul li:hover { color: white; }
-  .footer-contact-item { display: flex; align-items: center; gap: 10px; font-size: 13px; color: rgba(255,255,255,0.55); margin-bottom: 12px; word-break: break-all; }
-  .footer-contact-item svg { width: 14px; height: 14px; flex-shrink: 0; opacity: 0.45; }
+  .footer-contact-item { display: flex; align-items: flex-start; gap: 10px; font-size: 13px; color: rgba(255,255,255,0.55); margin-bottom: 12px; word-break: break-all; }
+  .footer-contact-item svg { width: 14px; height: 14px; flex-shrink: 0; opacity: 0.45; margin-top: 2px; }
   .footer-middle {
     padding: 2.5rem 0; border-bottom: 1px solid rgba(255,255,255,0.07);
     display: flex; flex-direction: column; align-items: center; gap: 1.25rem;
@@ -471,38 +456,32 @@
     to   { opacity: 1; transform: translateY(0); }
   }
 
-  /* ─── TABLET ─── */
+  /* ─── RESPONSIVE ─── */
   @media (max-width: 900px) {
-    .nav-center { display: none; }
     .process-track { grid-template-columns: 1fr; }
     .step-arrow { display: none; }
     .process-step { padding: 1.5rem 1rem; }
   }
-
   @media (max-width: 768px) {
     nav { padding: 0 1.25rem; height: 62px; }
-    html { scroll-padding-top: 72px; }
+    html { scroll-padding-top: 70px; }
     .side-menu { top: 62px; height: calc(100vh - 62px); width: 260px; }
+    .section { padding: 4rem 1.5rem; }
     .hero { padding: 6rem 1.5rem 3.5rem; }
     .hero-logo { width: 160px; margin-bottom: 1.75rem; }
-    .section { padding: 4rem 1.5rem; }
-    .cards-grid { grid-template-columns: 1fr; }
-    .blog-grid { grid-template-columns: 1fr; }
-    .blog-header { flex-direction: column; align-items: flex-start; gap: 1.25rem; }
+    .scroll-card { flex: 0 0 82vw; }
+    .blog-card  { flex: 0 0 82vw; }
+    .blog-arrow-cta { flex: 0 0 100px; }
     .contact-section { padding: 4rem 1.5rem; }
-    .contact-inner { grid-template-columns: 1fr; gap: 3rem; }
     .footer-top { grid-template-columns: 1fr; gap: 2rem; }
     .footer-inner { padding: 0 1.5rem; }
     .footer-bottom { flex-direction: column; align-items: center; text-align: center; }
     .footer-links { justify-content: center; }
   }
-
-  /* ─── MOBILE ─── */
   @media (max-width: 480px) {
     nav { padding: 0 1rem; height: 58px; }
-    html { scroll-padding-top: 66px; }
+    html { scroll-padding-top: 64px; }
     .side-menu { top: 58px; height: calc(100vh - 58px); width: 100%; border-right: none; }
-    .nav-logo img { height: 26px; }
     .hero { padding: 5rem 1rem 2.5rem; }
     .hero-logo { width: 130px; margin-bottom: 1.5rem; }
     .hero-ctas { flex-direction: column; align-items: center; }
@@ -513,8 +492,7 @@
     .footer-brand p { max-width: 100%; }
     .footer-bottom { gap: 0.5rem; }
     .footer-links { gap: 1rem; flex-wrap: wrap; justify-content: center; }
-    .social-btn { width: 38px; height: 38px; }
-    .logo-marquee::before, .logo-marquee::after { width: 50px; }
+    .svc-marquee::before, .svc-marquee::after { width: 40px; }
   }
 </style>
 </head>
@@ -522,86 +500,59 @@
 
 <div class="overlay" id="overlay" onclick="closeMenu()"></div>
 
-<!-- ─── NAV ─── -->
+<!-- ══════════════════════
+     NAV — hamburger + contact only
+══════════════════════ -->
 <nav>
-  <div class="nav-left">
-    <div class="hamburger" id="hamburger" onclick="toggleMenu()">
-      <span></span><span></span><span></span>
-    </div>
-    <a href="#home" class="nav-logo">
-      <img src="BRS_-_Logo.jpg" alt="Blue Ridge Solutions"
-           onerror="this.style.display='none'; this.nextElementSibling.style.display='flex'">
-      <span class="nav-logo-text">BLUE RIDGE <span>SOLUTIONS</span></span>
-    </a>
+  <div class="hamburger" id="hamburger" onclick="toggleMenu()">
+    <span></span><span></span><span></span>
   </div>
-
-  <div class="nav-center">
-    <a href="#home"     class="nav-link">Home</a>
-    <a href="#services" class="nav-link">Services</a>
-    <a href="#blog"     class="nav-link">Blog</a>
-    <a href="#contact"  class="nav-link">Contact</a>
-  </div>
-
-  <div class="nav-right">
-    <button class="nav-btn primary" onclick="document.getElementById('contact').scrollIntoView({behavior:'smooth'})">
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
-      Contact Us
-    </button>
-  </div>
+  <button class="nav-btn primary" onclick="document.getElementById('contact').scrollIntoView({behavior:'smooth'})">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+    Contact Us
+  </button>
 </nav>
 
 <!-- ─── SIDE MENU ─── -->
 <div class="side-menu" id="sideMenu">
   <div class="side-menu-label">Navigation</div>
-  <a href="#home" class="side-menu-item" onclick="closeMenu()">
-    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
-    Home
+  <a href="#home"     class="side-menu-item" onclick="closeMenu()">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>Home
   </a>
   <a href="#services" class="side-menu-item" onclick="closeMenu()">
-    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="3"/><path d="M19.07 4.93a10 10 0 0 1 0 14.14M4.93 4.93a10 10 0 0 0 0 14.14"/></svg>
-    Services
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="3"/><path d="M19.07 4.93a10 10 0 0 1 0 14.14M4.93 4.93a10 10 0 0 0 0 14.14"/></svg>Services
   </a>
-  <a href="#blog" class="side-menu-item" onclick="closeMenu()">
-    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg>
-    Blog
+  <a href="#blog"     class="side-menu-item" onclick="closeMenu()">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg>Blog
   </a>
-  <a href="#contact" class="side-menu-item" onclick="closeMenu()">
-    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
-    Contact
+  <a href="#contact"  class="side-menu-item" onclick="closeMenu()">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>Contact
   </a>
   <div class="side-menu-divider"></div>
   <div class="side-menu-label">Services</div>
   <div class="side-menu-item">
-    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/></svg>
-    Website Design
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/></svg>Website Design
   </div>
   <div class="side-menu-item">
-    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="10"/><path d="M2 12h20M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
-    SEO &amp; Visibility
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="11" cy="11" r="8"/><path d="M21 21l-4.35-4.35"/></svg>SEO &amp; Visibility
   </div>
   <div class="side-menu-item">
-    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
-    Customer Systems
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>Lead Generation
   </div>
   <div class="side-menu-item">
-    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
-    Smart Automation
-  </div>
-  <div class="side-menu-divider"></div>
-  <div class="side-menu-label">Connect</div>
-  <div class="side-menu-item">
-    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>
-    LinkedIn
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>WhatsApp &amp; Email
   </div>
   <div class="side-menu-item">
-    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg>
-    Facebook
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>Customer Management
+  </div>
+  <div class="side-menu-item">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>Business Automation
   </div>
 </div>
 
 
 <!-- ══════════════════════════════════════════════
-     SECTION 1 — HERO
+     HERO
 ════════════════════════════════════════════════ -->
 <section class="hero" id="home">
   <div class="hero-bg"></div>
@@ -610,7 +561,7 @@
   <img class="hero-logo" src="BRS_-_Logo.jpg" alt="Blue Ridge Solutions"
        onerror="this.style.display='none'">
 
-  <div class="hero-company-name">
+  <div class="hero-brand">
     <h1>BLUE RIDGE <span>SOLUTIONS</span></h1>
   </div>
 
@@ -630,47 +581,102 @@
     </button>
   </div>
 
-  <div class="hero-pills">
-    <span class="pill">Website Design</span>
-    <span class="pill">SEO &amp; Visibility</span>
-    <span class="pill">Lead Generation</span>
-    <span class="pill">WhatsApp &amp; Email</span>
-    <span class="pill">CRM Integration</span>
-    <span class="pill">Business Automation</span>
-  </div>
-
-  <!-- Tool marquee -->
-  <div class="logo-marquee">
-    <div class="logo-track">
+  <!-- ── Services marquee — directly under CTAs ── -->
+  <div class="svc-marquee">
+    <div class="svc-track">
       <!-- Set A -->
-      <div class="logo-item"><span class="logo-badge"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="3"/><path d="M19.07 4.93a10 10 0 0 1 0 14.14M4.93 4.93a10 10 0 0 0 0 14.14"/></svg>Make.com</span></div>
-      <div class="logo-item"><span class="logo-badge"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><polyline points="13 17 18 12 13 7"/><polyline points="6 17 11 12 6 7"/></svg>Zapier</span></div>
-      <div class="logo-item"><span class="logo-badge"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/></svg>Google Workspace</span></div>
-      <div class="logo-item"><span class="logo-badge"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>WhatsApp</span></div>
-      <div class="logo-item"><span class="logo-badge"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>Gmail</span></div>
-      <div class="logo-item"><span class="logo-badge"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12a19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 3.6 1.27h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.91 8.91a16 16 0 0 0 6 6l.91-.91a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 21.73 16.92z"/></svg>Twilio</span></div>
-      <div class="logo-item"><span class="logo-badge"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>HubSpot</span></div>
-      <div class="logo-item"><span class="logo-badge"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M9 21V9"/></svg>Google Sheets</span></div>
-      <div class="logo-item"><span class="logo-badge"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="10"/><path d="M2 12h20M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>Zoho</span></div>
-      <div class="logo-item"><span class="logo-badge"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M3 3h18v18H3zM3 9h18M3 15h18M9 3v18"/></svg>Airtable</span></div>
+      <div class="svc-item">
+        <span class="svc-badge">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/></svg>
+          Website Design
+        </span>
+      </div>
+      <div class="svc-item"><span class="svc-sep">·</span></div>
+      <div class="svc-item">
+        <span class="svc-badge">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="11" cy="11" r="8"/><path d="M21 21l-4.35-4.35"/></svg>
+          SEO &amp; Visibility
+        </span>
+      </div>
+      <div class="svc-item"><span class="svc-sep">·</span></div>
+      <div class="svc-item">
+        <span class="svc-badge">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
+          Lead Generation
+        </span>
+      </div>
+      <div class="svc-item"><span class="svc-sep">·</span></div>
+      <div class="svc-item">
+        <span class="svc-badge">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+          WhatsApp &amp; Email
+        </span>
+      </div>
+      <div class="svc-item"><span class="svc-sep">·</span></div>
+      <div class="svc-item">
+        <span class="svc-badge">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+          Customer Management System
+        </span>
+      </div>
+      <div class="svc-item"><span class="svc-sep">·</span></div>
+      <div class="svc-item">
+        <span class="svc-badge">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
+          Business Automation
+        </span>
+      </div>
+      <div class="svc-item"><span class="svc-sep">·</span></div>
       <!-- Set B (duplicate for seamless loop) -->
-      <div class="logo-item"><span class="logo-badge"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="3"/><path d="M19.07 4.93a10 10 0 0 1 0 14.14M4.93 4.93a10 10 0 0 0 0 14.14"/></svg>Make.com</span></div>
-      <div class="logo-item"><span class="logo-badge"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><polyline points="13 17 18 12 13 7"/><polyline points="6 17 11 12 6 7"/></svg>Zapier</span></div>
-      <div class="logo-item"><span class="logo-badge"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/></svg>Google Workspace</span></div>
-      <div class="logo-item"><span class="logo-badge"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>WhatsApp</span></div>
-      <div class="logo-item"><span class="logo-badge"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>Gmail</span></div>
-      <div class="logo-item"><span class="logo-badge"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12a19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 3.6 1.27h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.91 8.91a16 16 0 0 0 6 6l.91-.91a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 21.73 16.92z"/></svg>Twilio</span></div>
-      <div class="logo-item"><span class="logo-badge"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>HubSpot</span></div>
-      <div class="logo-item"><span class="logo-badge"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M9 21V9"/></svg>Google Sheets</span></div>
-      <div class="logo-item"><span class="logo-badge"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="10"/><path d="M2 12h20M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>Zoho</span></div>
-      <div class="logo-item"><span class="logo-badge"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M3 3h18v18H3zM3 9h18M3 15h18M9 3v18"/></svg>Airtable</span></div>
+      <div class="svc-item">
+        <span class="svc-badge">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/></svg>
+          Website Design
+        </span>
+      </div>
+      <div class="svc-item"><span class="svc-sep">·</span></div>
+      <div class="svc-item">
+        <span class="svc-badge">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="11" cy="11" r="8"/><path d="M21 21l-4.35-4.35"/></svg>
+          SEO &amp; Visibility
+        </span>
+      </div>
+      <div class="svc-item"><span class="svc-sep">·</span></div>
+      <div class="svc-item">
+        <span class="svc-badge">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
+          Lead Generation
+        </span>
+      </div>
+      <div class="svc-item"><span class="svc-sep">·</span></div>
+      <div class="svc-item">
+        <span class="svc-badge">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+          WhatsApp &amp; Email
+        </span>
+      </div>
+      <div class="svc-item"><span class="svc-sep">·</span></div>
+      <div class="svc-item">
+        <span class="svc-badge">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+          Customer Management System
+        </span>
+      </div>
+      <div class="svc-item"><span class="svc-sep">·</span></div>
+      <div class="svc-item">
+        <span class="svc-badge">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
+          Business Automation
+        </span>
+      </div>
+      <div class="svc-item"><span class="svc-sep">·</span></div>
     </div>
   </div>
 </section>
 
 
 <!-- ══════════════════════════════════════════════
-     SECTION 2 — SERVICES (Growth Problems)
+     WHAT WE SOLVE — Horizontal Scroll
 ════════════════════════════════════════════════ -->
 <section class="section bg-white" id="services">
   <div class="section-inner">
@@ -678,25 +684,25 @@
     <h2 class="section-title">Helping Businesses Solve Growth Problems</h2>
     <p class="section-lead">From your first impression online to the systems behind the scenes — we build what your business needs to grow consistently.</p>
 
-    <div class="cards-grid">
+    <div class="cards-scroll" id="cardsScroll">
 
-      <div class="card">
+      <div class="scroll-card">
         <div class="card-icon">
           <svg viewBox="0 0 24 24" fill="none" stroke="#3a6fd8" stroke-width="1.5"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/></svg>
         </div>
         <div class="card-title">Better Websites</div>
-        <p class="card-desc">Modern websites designed to build trust and convert visitors into paying customers — not just attractive pages, but business tools that work for you around the clock.</p>
+        <p class="card-desc">Modern websites designed to build trust and convert visitors into paying customers — not just attractive pages, but business tools that work around the clock.</p>
       </div>
 
-      <div class="card">
+      <div class="scroll-card">
         <div class="card-icon">
-          <svg viewBox="0 0 24 24" fill="none" stroke="#3a6fd8" stroke-width="1.5"><circle cx="12" cy="12" r="10"/><path d="M2 12h20M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
+          <svg viewBox="0 0 24 24" fill="none" stroke="#3a6fd8" stroke-width="1.5"><circle cx="11" cy="11" r="8"/><path d="M21 21l-4.35-4.35"/></svg>
         </div>
         <div class="card-title">More Visibility</div>
         <p class="card-desc">Helping businesses rank better on Google and improve discoverability — so the right customers find you before they find your competition.</p>
       </div>
 
-      <div class="card">
+      <div class="scroll-card">
         <div class="card-icon">
           <svg viewBox="0 0 24 24" fill="none" stroke="#3a6fd8" stroke-width="1.5"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
         </div>
@@ -704,21 +710,28 @@
         <p class="card-desc">Improving how businesses capture and manage customer enquiries — so no lead falls through the cracks and follow-up is always timely and professional.</p>
       </div>
 
-      <div class="card">
+      <div class="scroll-card">
         <div class="card-icon">
-          <svg viewBox="0 0 24 24" fill="none" stroke="#3a6fd8" stroke-width="1.5"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
+          <svg viewBox="0 0 24 24" fill="none" stroke="#3a6fd8" stroke-width="1.5"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
         </div>
         <div class="card-title">Smart Automation</div>
         <p class="card-desc">Reducing manual work through automated workflows and digital systems, freeing your team to focus on what actually grows the business.</p>
       </div>
 
     </div>
+
+    <div class="scroll-hint" id="cardsHint">
+      <div class="scroll-dot active" onclick="scrollTo_('cardsScroll',0)"></div>
+      <div class="scroll-dot"        onclick="scrollTo_('cardsScroll',1)"></div>
+      <div class="scroll-dot"        onclick="scrollTo_('cardsScroll',2)"></div>
+      <div class="scroll-dot"        onclick="scrollTo_('cardsScroll',3)"></div>
+    </div>
   </div>
 </section>
 
 
 <!-- ══════════════════════════════════════════════
-     SECTION 3 — HOW WE WORK
+     HOW WE WORK
 ════════════════════════════════════════════════ -->
 <section class="section bg-light">
   <div class="section-inner">
@@ -727,65 +740,53 @@
     <p class="section-lead">A clear, three-step process that finds where your business is losing growth opportunities — and builds the systems to capture them.</p>
 
     <div class="process-track">
-
       <div class="process-step">
         <div class="step-num">01</div>
         <div class="step-title">Identify Problems</div>
         <p class="step-desc">We analyse where your business is losing growth opportunities and identify which problems are most worth solving first.</p>
       </div>
-
       <div class="step-arrow">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><polyline points="9 18 15 12 9 6"/></svg>
       </div>
-
       <div class="process-step">
         <div class="step-num">02</div>
         <div class="step-title">Build Better Systems</div>
         <p class="step-desc">We design digital systems tailored to improve efficiency and customer acquisition — built to scale as your business grows.</p>
       </div>
-
       <div class="step-arrow">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><polyline points="9 18 15 12 9 6"/></svg>
       </div>
-
       <div class="process-step">
         <div class="step-num">03</div>
         <div class="step-title">Optimise Growth</div>
         <p class="step-desc">We monitor performance and continuously improve results, making sure your systems keep delivering as your business evolves.</p>
       </div>
-
     </div>
   </div>
 </section>
 
 
 <!-- ══════════════════════════════════════════════
-     SECTION 4 — BLOG / INSIGHTS
+     INSIGHTS / BLOG — Horizontal Scroll
 ════════════════════════════════════════════════ -->
 <section class="section bg-white blog-section" id="blog">
-  <!-- Subtle floating background icons -->
   <div class="float-bg">
-    <div class="float-icon" style="top:8%; right:6%; width:90px; height:90px;">
+    <div class="float-icon" style="top:8%; right:6%;">
       <svg width="90" height="90" viewBox="0 0 24 24" stroke-width="0.8"><circle cx="12" cy="12" r="10"/><path d="M2 12h20M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
     </div>
-    <div class="float-icon" style="bottom:12%; left:4%; width:80px; height:80px;">
+    <div class="float-icon" style="bottom:12%; left:4%;">
       <svg width="80" height="80" viewBox="0 0 24 24" stroke-width="0.8"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
     </div>
-    <div class="float-icon" style="top:45%; left:1.5%; width:70px; height:70px;">
+    <div class="float-icon" style="top:42%; left:2%;">
       <svg width="70" height="70" viewBox="0 0 24 24" stroke-width="0.8"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
     </div>
   </div>
 
   <div class="section-inner" style="position:relative; z-index:1;">
-    <div class="blog-header">
-      <div>
-        <span class="eyebrow">Insights</span>
-        <h2 class="section-title">Business Growth Insights</h2>
-      </div>
-      <button class="btn-outline" style="white-space:nowrap; flex-shrink:0;">View All Articles</button>
-    </div>
+    <span class="eyebrow">Insights</span>
+    <h2 class="section-title">Business Growth Insights</h2>
 
-    <div class="blog-grid">
+    <div class="blog-scroll" id="blogScroll">
 
       <div class="blog-card">
         <div class="bc-tag">Website &amp; Branding</div>
@@ -810,9 +811,17 @@
 
       <div class="blog-card">
         <div class="bc-tag">Automation</div>
-        <div class="bc-title">Automating Customer Communication to Save Time and Win More Business</div>
-        <div class="bc-desc">How businesses are using WhatsApp, email, and smart workflows to respond faster, follow up consistently, and convert more enquiries.</div>
+        <div class="bc-title">Automating Customer Communication to Win More Business</div>
+        <div class="bc-desc">How businesses are using WhatsApp, email, and smart workflows to respond faster and convert more enquiries into paying clients.</div>
         <div class="bc-date">Coming Soon</div>
+      </div>
+
+      <!-- Arrow CTA at end of scroll -->
+      <div class="blog-arrow-cta">
+        <div class="arrow-circle">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="9 18 15 12 9 6"/></svg>
+        </div>
+        <span>View All Articles</span>
       </div>
 
     </div>
@@ -821,72 +830,38 @@
 
 
 <!-- ══════════════════════════════════════════════
-     SECTION 5 — CONTACT / CTA
+     CONTACT — form only
 ════════════════════════════════════════════════ -->
 <section class="contact-section" id="contact">
   <div class="contact-grid-bg"></div>
-  <div class="contact-inner">
+  <div class="contact-wrap">
+    <span class="eyebrow">Get in Touch</span>
+    <h2 class="section-title" style="color:white; margin-bottom:0.75rem;">
+      Let's Improve How Your Business Grows
+    </h2>
+    <p class="section-lead" style="color:rgba(255,255,255,0.5); margin: 0 auto 2.5rem; max-width:520px;">
+      Whether you need a better website, improved visibility on Google, or smarter business systems, we'd love to discuss how we can help.
+    </p>
 
-    <!-- Left: copy + contact details -->
-    <div>
-      <span class="eyebrow">Get in Touch</span>
-      <h2 class="section-title" style="color:white; margin-bottom:0.75rem;">Let's Improve How Your Business Grows</h2>
-      <p class="section-lead" style="color:rgba(255,255,255,0.5); margin-bottom:2.5rem;">Whether you need a better website, improved visibility on Google, or smarter business systems, we'd love to discuss how we can help.</p>
-
-      <div class="contact-detail">
-        <div class="detail-icon">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
-        </div>
-        <div class="detail-text">
-          <strong>Email</strong>
-          <span>hello@blueridgesolutions.co.za</span>
-        </div>
+    <form id="contactForm" class="contact-form">
+      <div class="cfield">
+        <label for="senderName">Your Name</label>
+        <input type="text" id="senderName" name="name" placeholder="John Dlamini" required>
       </div>
-
-      <div class="contact-detail">
-        <div class="detail-icon">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="10"/><path d="M2 12h20M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
-        </div>
-        <div class="detail-text">
-          <strong>Website</strong>
-          <span>www.blueridgesolutions.co.za</span>
-        </div>
+      <div class="cfield">
+        <label for="senderBusiness">Business Name</label>
+        <input type="text" id="senderBusiness" name="business" placeholder="Your Business">
       </div>
-
-      <div class="contact-detail">
-        <div class="detail-icon">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
-        </div>
-        <div class="detail-text">
-          <strong>Location</strong>
-          <span>South Coast, KwaZulu-Natal, South Africa</span>
-        </div>
+      <div class="cfield">
+        <label for="senderEmail">Email Address</label>
+        <input type="email" id="senderEmail" name="email" placeholder="john@yourbusiness.co.za" required>
       </div>
-    </div>
-
-    <!-- Right: form -->
-    <div>
-      <form id="contactForm" class="contact-form">
-        <div class="cfield">
-          <label for="senderName">Your Name</label>
-          <input type="text" id="senderName" name="name" placeholder="John Dlamini" required>
-        </div>
-        <div class="cfield">
-          <label for="senderBusiness">Business Name</label>
-          <input type="text" id="senderBusiness" name="business" placeholder="Your Business">
-        </div>
-        <div class="cfield">
-          <label for="senderEmail">Email Address</label>
-          <input type="email" id="senderEmail" name="email" placeholder="john@yourbusiness.co.za" required>
-        </div>
-        <div class="cfield">
-          <label for="senderMessage">What do you need help with?</label>
-          <textarea id="senderMessage" name="message" placeholder="Tell us about your business and what you're looking to improve..." required></textarea>
-        </div>
-        <button type="submit" class="contact-submit">Schedule a Consultation</button>
-      </form>
-    </div>
-
+      <div class="cfield">
+        <label for="senderMessage">What do you need help with?</label>
+        <textarea id="senderMessage" name="message" placeholder="Tell us about your business and what you're looking to improve..." required></textarea>
+      </div>
+      <button type="submit" class="contact-submit">Schedule a Consultation</button>
+    </form>
   </div>
 </section>
 
@@ -895,7 +870,6 @@
 <footer>
   <div class="footer-inner">
     <div class="footer-top">
-
       <div class="footer-brand">
         <img src="BRS_-_Logo.jpg" alt="Blue Ridge Solutions"
              onerror="this.style.display='none'; this.nextElementSibling.style.display='block'">
@@ -910,7 +884,7 @@
           <li>SEO &amp; Google Visibility</li>
           <li>Lead Generation Systems</li>
           <li>WhatsApp &amp; Email Automation</li>
-          <li>Customer Support Systems</li>
+          <li>Customer Management Systems</li>
           <li>Business Process Automation</li>
         </ul>
       </div>
@@ -930,7 +904,6 @@
           South Coast, KwaZulu-Natal
         </div>
       </div>
-
     </div>
 
     <div class="footer-middle">
@@ -965,7 +938,7 @@
 
 <!-- ─── SCRIPTS ─── -->
 <script>
-  // Menu
+  // ── Menu ──
   function toggleMenu() {
     document.getElementById('sideMenu').classList.toggle('open');
     document.getElementById('hamburger').classList.toggle('open');
@@ -977,12 +950,34 @@
     document.getElementById('overlay').classList.remove('show');
   }
 
-  // Copyright year
+  // ── Footer year ──
   document.getElementById('copy-year').textContent = new Date().getFullYear();
+
+  // ── Scroll dots helper ──
+  function scrollTo_(containerId, index) {
+    const el = document.getElementById(containerId);
+    const card = el.querySelectorAll('.scroll-card')[index];
+    if (card) card.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'start' });
+  }
+
+  // ── Update dots on scroll ──
+  const cardsScroll = document.getElementById('cardsScroll');
+  const dots = document.querySelectorAll('#cardsHint .scroll-dot');
+  if (cardsScroll) {
+    cardsScroll.addEventListener('scroll', () => {
+      const cards = cardsScroll.querySelectorAll('.scroll-card');
+      let closest = 0, minDist = Infinity;
+      cards.forEach((c, i) => {
+        const dist = Math.abs(c.getBoundingClientRect().left - cardsScroll.getBoundingClientRect().left);
+        if (dist < minDist) { minDist = dist; closest = i; }
+      });
+      dots.forEach((d, i) => d.classList.toggle('active', i === closest));
+    });
+  }
 </script>
 
 <script>
-  // Contact form → Make.com webhook
+  // ── Contact form → Make.com webhook ──
   document.getElementById('contactForm').addEventListener('submit', async function(e) {
     e.preventDefault();
     const btn = this.querySelector('.contact-submit');
@@ -1004,7 +999,7 @@
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(payload)
       });
-      alert('Thank you! Your message has been sent. We\'ll be in touch shortly.');
+      alert("Thank you! Your message has been sent. We'll be in touch shortly.");
       this.reset();
     } catch (err) {
       console.error(err);
