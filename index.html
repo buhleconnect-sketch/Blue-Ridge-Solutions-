@@ -846,7 +846,7 @@
     <form id="contactForm" class="contact-form">
       <div class="cfield">
         <label for="senderName">Your Name</label>
-        <input type="text" id="senderName" name="name" placeholder="John Dlamini" required>
+        <input type="text" id="senderName" name="name" placeholder="Jane Doe" required>
       </div>
       <div class="cfield">
         <label for="senderBusiness">Business Name</label>
@@ -858,7 +858,7 @@
       </div>
       <div class="cfield">
         <label for="senderMessage">What do you need help with?</label>
-        <textarea id="senderMessage" name="message" placeholder="Tell us about your business and what you're looking to improve..." required></textarea>
+        <textarea id="senderMessage" name="message" placeholder="Tell us about your practice and what you're looking to improve..." required></textarea>
       </div>
       <button type="submit" class="contact-submit">Schedule a Consultation</button>
     </form>
@@ -1025,6 +1025,19 @@
     }
   });
 </script>
+ <style>
+  /* Stop the sliding marquee animation */
+  .marquee-content, 
+  [class*="marquee"], 
+  [class*="ticker"] {
+      animation: none !important;
+      transform: none !important;
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap; 
+      gap: 20px;
+  }
+</style>
 
 </body>
 </html>
